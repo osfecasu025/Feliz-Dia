@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffccff;
+    }
+
+    #mensaje {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      color: #4d4d4d;
+      padding: 40px; /* Ajustado para dispositivos móviles */
+      border-radius: 20px; /* Mayor redondeo para móviles */
+      background-color: #ffe6e6;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      width: 80%; /* Ajuste del ancho para móviles */
+      max-width: 400px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
+    }
+
+    #emoji {
+      font-size: 60px; /* Tamaño del emoji reducido para móviles */
+      margin-bottom: 10px; /* Menos espacio entre el emoji y el texto */
+    }
+
+    #mensaje.animated {
+      animation: bounce 2s infinite;
+    }
+
+    #boton {
+      background: url('carta.png') no-repeat;
+      background-size: cover;
+      width: 100px; /* Ajuste del ancho para móviles */
+      height: 100px; /* Ajuste del alto para móviles */
+      border: none;
+      cursor: pointer;
+    }
+
+    #corazon {
+      font-size: 40px; /* Tamaño del corazón reducido para móviles */
+      margin-top: 10px; /* Menos espacio superior para el corazón */
+      visibility: hidden;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    #cargando {
+      margin-top: 10px; /* Menos espacio superior para el mensaje de carga */
+      font-size: 18px; /* Tamaño de la fuente reducido para móviles */
+    }
+
+    #nuevoMensaje {
+      display: none;
+      margin-top: 20px; /* Espacio superior adicional para el nuevo mensaje */
+      padding: 40px; /* Ajuste del relleno para móviles */
+      border-radius: 20px; /* Mayor redondeo para móviles */
+      background-color: #ffe6e6;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%; /* Ajuste del ancho para móviles */
+      max-width: 400px; /* Ancho máximo para evitar que sea demasiado ancho en pantallas grandes */
+    }
+
+    #nuevoMensaje img {
+      width: 100%; /* Ajuste del ancho para móviles */
+      border-radius: 10px; /* Redondeo para la imagen en móviles */
+      margin-top: 20px; /* Espacio superior adicional para la imagen */
+    }
+
+    /* Animación de rebote */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="mensaje">
+    <div id="emoji">٩(◕‿◕｡)۶</div>
+    <h1>Te ha llegado un mensaje</h1>
+    <h4>Abre la carta</h4>
+    <button id="boton" onclick="mostrarCargado()"></button>
+  </div>
+
+  <div id="corazon">❤️</div>
+
+  <div id="cargando"></div>
+
+  <div id="nuevoMensaje">
+    <h1>¡Feliz día de la mujer! 💖</h1>
+    <img src="doredore.png" alt="doredore">
+  </div>
+
+  <script>
+    function mostrarCargado() {
+      document.getElementById('corazon').style.visibility = 'visible';
+      document.getElementById('cargando').innerHTML = 'Cargando';
+
+      // Cambiar mensaje cada segundo
+      var interval = setInterval(function() {
+        document.getElementById('cargando').innerHTML += '.';
+      }, 1000);
+
+      // Esperar 3 segundos antes de mostrar el nuevo mensaje
+      setTimeout(function() {
+        clearInterval(interval);
+        document.getElementById('corazon').style.display = 'none';
+        document.getElementById('cargando').style.display = 'none';
+        document.getElementById('mensaje').style.display = 'none';
+        document.getElementById('nuevoMensaje').style.display = 'block';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
